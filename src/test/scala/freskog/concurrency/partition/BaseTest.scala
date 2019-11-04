@@ -6,7 +6,7 @@ import zio._
 import zio.console.{ Console }
 import zio.test._
 import zio.test.Assertion.{ equalTo }
-import zio.test.TestAspect.{ timeout }
+import zio.test.TestAspect.{ ignore, timeout }
 import zio.stm.{ TQueue }
 import zio.duration._
 import zio.clock.Clock
@@ -59,7 +59,7 @@ object STMSpec
               _       <- queue.offer("published").commit
               result  <- promise.await
             } yield assert(result, equalTo("published"))
-          } @@ timeout(150.millis)
+          } //@@ timeout(150.millis)
         )
       )
     )

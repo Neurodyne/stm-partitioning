@@ -59,7 +59,7 @@ object Partition extends Serializable {
   def publish[A](queue: TQueue[A], a: A): STM[Nothing, Boolean] =
     queue.size.flatMap(size => if (size == queue.capacity) STM.succeed(false) else queue.offer(a) *> STM.succeed(true))
 
-  def debug(cause: Exit.Cause[String]): ZIO[Console, Nothing, Unit] =
+  def debug(cause: zio.Cause[String]): ZIO[Console, Nothing, Unit] =
     putStrLn(cause.prettyPrint)
 
   def takeNextMessageOrTimeout[A](id: PartId, queue: TQueue[A]): ZIO[Clock with Conf, String, A] =
