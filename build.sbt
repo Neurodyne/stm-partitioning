@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   "org.scalactic" %% "scalactic"    % scalaTestVersion,
   "org.scalatest" %% "scalatest"    % scalaTestVersion % "test"
 )
-testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
+testFrameworks += new TestFramework("zio.test.sbt.ZTestFramework")
 
 addCommandAlias("com", "all compile test:compile")
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
